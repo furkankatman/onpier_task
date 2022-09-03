@@ -1,13 +1,59 @@
 <h1>Login Page</h1>
 
-<div class="login">
-  <input type="text" [(ngModel)]="email" placeholder="Email" />
-  <input type="password" [(ngModel)]="password" placeholder="Password" />
-  <button type="submit" (click)="login()">Login</button>
+<div class="login" *ngIf="signInEnabled">
+  <input
+    class="form-control"
+    type="text"
+    [(ngModel)]="email"
+    placeholder="Email"
+  />
+  <input
+    class="form-control"
+    type="password"
+    [(ngModel)]="password"
+    placeholder="Password"
+  />
+  <button
+    [disabled]="loading"
+    class="btn btn-sm btn-primary"
+    type="submit"
+    (click)="login()"
+  >
+    Login
+  </button>
+  <span *ngIf="loading">logging in ...</span>
+  <div>
+    <span class="labelLogin" (click)="signInEnabled = false"
+      >dont have an account then register</span
+    >
+  </div>
 </div>
 
-<div class="register">
-  <input type="text" [(ngModel)]="email" placeholder="Email" />
-  <input type="password" [(ngModel)]="password" placeholder="Password" />
-  <button type="submit" (click)="register()">Register</button>
+<div class="register" *ngIf="!signInEnabled">
+  <input
+    class="form-control"
+    type="text"
+    [(ngModel)]="email"
+    placeholder="Email"
+  />
+  <input
+    class="form-control"
+    type="password"
+    [(ngModel)]="password"
+    placeholder="Password"
+  />
+  <button
+    [disabled]="loading"
+    class="btn btn-sm btn-success"
+    type="submit"
+    (click)="register()"
+  >
+    Register
+  </button>
+  <span *ngIf="loading">logging in ...</span>
+  <div>
+    <span class="labelLogin" (click)="signInEnabled = true"
+      >already have an account then Login</span
+    >
+  </div>
 </div>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component,  OnInit } from '@angular/core';
 import { LoginServiceService } from '../Services/login-service.service';
+
+
 
 @Component({
   selector: 'app-app-login',
@@ -10,22 +12,24 @@ export class AppLoginComponent implements OnInit {
 
   email:string;
   password:string;
+  signInEnabled:boolean;
+  loading:boolean;
   constructor(private _loginService:LoginServiceService) { }
 
   ngOnInit() {
   }
 
   async login(){
-    debugger
-    let result=await this._loginService.login(this.email,this.password);
-    console.log(result);
+    this.loading=true;
+    this._loginService.login(this.email,this.password);
+      this.loading=false;
   }
 
   async register()
   {
-    debugger
-    let result=  await this._loginService.register(this.email,this.password);
-    console.log(result)
+    this.loading=true
+    await this._loginService.register(this.email,this.password);
+    this.loading=false;
   }
 
 }

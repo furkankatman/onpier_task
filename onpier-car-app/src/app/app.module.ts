@@ -9,9 +9,10 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { AppHomeComponent } from './app-home/app-home.component';
 import { AppLoginComponent } from './app-login/app-login.component';
-import { AppCarsComponent } from './app-cars/app-cars.component';
+import { AppAddCarsComponent } from './app-cars/app-cars.component';
 import { LoginServiceService } from './Services/login-service.service';
 import { FormsModule } from '@angular/forms';
+import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,11 +33,12 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
       AppHomeComponent,
       AppLoginComponent,
-      AppCarsComponent,
+      AppAddCarsComponent,
+      AppDashboardComponent
    ],
   imports: [
     BrowserModule,

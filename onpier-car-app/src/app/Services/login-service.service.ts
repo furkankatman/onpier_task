@@ -17,22 +17,30 @@ export class LoginServiceService {
     measurementId: "G-PND65CRTT1"
   };
  readonly app:FirebaseApp;
-
+ user:auth.User;
 
 constructor() {
     // Initialize Firebase
     this.app = initializeApp(this.firebaseConfig);
  }
 
-  login(email:string,password:string){
-  return auth.signInWithEmailAndPassword(auth.getAuth(this.app),email,password).catch((reason)=>{
-    alert("Wrong Credentials")
-  }).then((user)=>{
-    console.log("userLoggedIn",user);
-  })
+  async login(email:string,password:string){
+try {
+  let result=await auth.signInWithEmailAndPassword(auth.getAuth(this.app),email,password);
+  this.user=result.user;
+
+} catch (error:any) {
+  alert(JSON.stringify(error.message))
+}
+
  }
- register(email: string, password: string) {
-  return auth.createUserWithEmailAndPassword(auth.getAuth(this.app),email,password);
+ async register(email: string, password: string) {
+try {
+  let result= await auth.createUserWithEmailAndPassword(auth.getAuth(this.app),email,password);
+    this.user=result.user;
+} catch (error:any) {
+    alert(JSON.stringify(error.message))
+}
 }
 
 

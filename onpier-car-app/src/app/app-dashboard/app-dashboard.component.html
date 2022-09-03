@@ -1,0 +1,108 @@
+<div>
+  <h1>Dashboard PAge</h1>
+
+  <div>
+    <div>
+      <input
+        type="text"
+        required
+        name="brand"
+        placeholder="Brand"
+        [(ngModel)]="carToSearch.brand"
+      />
+      <input
+        type="text"
+        required
+        name="model"
+        placeholder="Model"
+        [(ngModel)]="carToSearch.model"
+      />
+      <input
+        type="text"
+        required
+        name="km"
+        placeholder="Km"
+        [(ngModel)]="carToSearch.km"
+      />
+      <input
+        type="text"
+        required
+        name="year"
+        placeholder="Year"
+        [(ngModel)]="carToSearch.year"
+      />
+      <input
+        type="text"
+        required
+        name="shift"
+        placeholder="Shift"
+        [(ngModel)]="carToSearch.shift"
+      />
+      <input
+        type="text"
+        required
+        name="fuel"
+        placeholder="Fuel"
+        [(ngModel)]="carToSearch.fuel"
+      />
+      <input
+        type="text"
+        required
+        name="color"
+        placeholder="Color"
+        [(ngModel)]="carToSearch.color"
+      />
+      <input
+        type="text"
+        name="cartype"
+        placeholder="CarType"
+        [(ngModel)]="carToSearch.car_type"
+      />
+      <div>
+        <b>E-car?</b
+        ><input
+          type="checkbox"
+          name="ecar"
+          placeholder="ECar"
+          [(ngModel)]="carToSearch.e_car"
+        />
+      </div>
+      <button type="button" (click)="Search(carToSearch)">Search</button>
+    </div>
+    <div class="CarsList">
+      <table>
+        <tr>
+          <th><b>Id</b></th>
+          <th><b>Brand</b></th>
+          <th><b>Model</b></th>
+          <th><b>Km</b></th>
+          <th><b>Year</b></th>
+          <th><b>Shift</b></th>
+          <th><b>Fuel</b></th>
+          <th><b>Color</b></th>
+          <th><b>CarType</b></th>
+          <th><b>Ecar</b></th>
+        </tr>
+        <tr *ngFor="let item of carsList">
+          <td>
+            {{ item.id }}
+          </td>
+          <td>
+            {{ item.brand }}
+          </td>
+          <td>{{ item.model }}</td>
+          <td>{{ item.km }}</td>
+          <td>{{ item.year }}</td>
+          <td>{{ item.shift }}</td>
+          <td>{{ item.fuel }}</td>
+          <td>{{ item.color }}</td>
+          <td>{{ item.car_type }}</td>
+          <td>{{ item.e_car }}</td>
+        </tr>
+        <tr>
+          <td><button type="button" (click)="LoadMore()">Load More</button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

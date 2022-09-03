@@ -10,3 +10,19 @@
   padding: 10px;
 
 }
+
+.login input{
+  width: 250px;
+  margin: 4px;
+}
+
+.register input{
+  width: 250px;
+  margin: 4px;
+}
+
+.labelLogin{
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 11px;
+}

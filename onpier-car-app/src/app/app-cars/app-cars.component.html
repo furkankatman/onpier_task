@@ -1,3 +1,133 @@
-<p>
-  app-cars works!
-</p>
+<div style="margin: 4px">
+  <h1>Cars Page</h1>
+  <h3>Lets add <b>Cars</b></h3>
+
+  <div class="NewCar">
+    <div>
+      <form ngNativeValidate (ngSubmit)="AddCar(carToAdd)" #form="ngForm">
+        <div>
+          <input
+            type="text"
+            required
+            name="brand"
+            placeholder="Brand"
+            [(ngModel)]="carToAdd.brand"
+          />
+          <input
+            type="text"
+            required
+            name="model"
+            placeholder="Model"
+            [(ngModel)]="carToAdd.model"
+          />
+          <input
+            type="text"
+            required
+            name="km"
+            placeholder="Km"
+            [(ngModel)]="carToAdd.km"
+          />
+          <input
+            type="text"
+            required
+            name="year"
+            placeholder="Year"
+            [(ngModel)]="carToAdd.year"
+          />
+          <input
+            type="text"
+            required
+            name="shift"
+            placeholder="Shift"
+            [(ngModel)]="carToAdd.shift"
+          />
+          <input
+            type="text"
+            required
+            name="fuel"
+            placeholder="Fuel"
+            [(ngModel)]="carToAdd.fuel"
+          />
+          <input
+            type="text"
+            required
+            name="color"
+            placeholder="Color"
+            [(ngModel)]="carToAdd.color"
+          />
+          <input
+            type="text"
+            name="cartype"
+            placeholder="CarType"
+            [(ngModel)]="carToAdd.car_type"
+          />
+          <div>
+            <b>E-car?</b
+            ><input
+              type="checkbox"
+              name="ecar"
+              placeholder="ECar"
+              [(ngModel)]="carToAdd.e_car"
+            />
+          </div>
+          <div class="DamageForm" *ngIf="damageEnabled">
+            <form
+              ngNativeValidate
+              (ngSubmit)="AddDamage(carDamageToAdd)"
+              #formDamage="ngForm"
+            >
+              <input
+                type="text"
+                name="damageplace"
+                required
+                placeholder="Which pieces are damaged?"
+                [(ngModel)]="carDamageToAdd.Description"
+              />
+              <input
+                type="text"
+                name="damagecost"
+                required
+                placeholder="How much do those damages cost?"
+                [(ngModel)]="carDamageToAdd.Cost"
+              />
+              <input type="submit" value="+" />
+            </form>
+          </div>
+        </div>
+        <div>
+          <button
+            class="btn btn-sm btn-danger"
+            type="button"
+            (click)="form.valid ? (damageEnabled = true) : ''"
+          >
+            Any damage?
+          </button>
+        </div>
+
+        <input class="btn btn-sm btn-primary" type="submit" value="Add" />
+        <button type="button" class="btn btn-sm btn-dark" (click)="Cancel()">
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="CarsList">
+    <table>
+      <tr>
+        <th><b>Brand</b></th>
+        <th><b>Color</b></th>
+        <th><b>Fuel</b></th>
+        <th><b>Km</b></th>
+      </tr>
+      <tr *ngFor="let item of carsList">
+        <td>
+          {{ item.brand }}
+        </td>
+        <td>{{ item.color }}</td>
+        <td>{{ item.fuel }}</td>
+        <td>{{ item.km }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
