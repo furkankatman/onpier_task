@@ -1,8 +1,14 @@
-<span>hello onpier user ---{{ getEmail() }}</span>
+<span>hello onpier user ---{{ _loginService.getUser()?.email }}</span>
 <ul>
   <li><a [routerLink]="'/home'">home</a></li>
-  <li><a [routerLink]="'/login'">login</a></li>
+  <li *ngIf="_loginService.getUser() == null">
+    <a [routerLink]="'/login'">login</a>
+  </li>
+  <li *ngIf="_loginService.getUser() != null">
+    <button type="button" (click)="_loginService.logOut()">Logout</button>
+  </li>
   <li><a [routerLink]="'/cars'">cars</a></li>
+  <li><a [routerLink]="'/dashboard'">dashboard</a></li>
 </ul>
 
 <router-outlet></router-outlet>

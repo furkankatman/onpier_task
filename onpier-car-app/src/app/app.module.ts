@@ -33,7 +33,7 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
       AppHomeComponent,
       AppLoginComponent,

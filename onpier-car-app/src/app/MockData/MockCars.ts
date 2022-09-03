@@ -28,7 +28,6 @@ e_car: false} as Car;
 cars.push(mercedes);
 cars.push(bmw);
 for (let index = 0; index < 25; index++) {
-  console.log("ss")
   if(index==0 || index==1)
   continue
   if(index%2==0)

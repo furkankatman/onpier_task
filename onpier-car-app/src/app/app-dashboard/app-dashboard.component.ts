@@ -14,7 +14,6 @@ export class AppDashboardComponent implements OnInit {
   constructor(private _carService:CarServiceService) { }
 
   ngOnInit() {
-    console.log("11")
     this.carsList=this._carService.getCarsByPaginated(this.pageNumber);
   }
 

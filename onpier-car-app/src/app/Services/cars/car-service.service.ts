@@ -53,7 +53,6 @@ SortGivenCars(cars:Car[]){
   return cars;
 }
 getCarsByFilter(car: Car,pageNumber:number): Car[] {
-console.log("z")
   let result:Car[]=[];
   if(car.brand){
     if(this.cars.filter(x=>x.brand.indexOf(car.brand)!=-1).length>0)

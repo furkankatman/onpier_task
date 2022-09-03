@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import * as auth from 'firebase/auth';
 
@@ -17,17 +18,17 @@ export class LoginServiceService {
     measurementId: "G-PND65CRTT1"
   };
  readonly app:FirebaseApp;
- user:auth.User;
 
-constructor() {
+constructor(private _route:Router) {
     // Initialize Firebase
     this.app = initializeApp(this.firebaseConfig);
+    this.getUserLoggedIn();
+
  }
 
   async login(email:string,password:string){
 try {
   let result=await auth.signInWithEmailAndPassword(auth.getAuth(this.app),email,password);
-  this.user=result.user;
 
 } catch (error:any) {
   alert(JSON.stringify(error.message))
@@ -37,10 +38,32 @@ try {
  async register(email: string, password: string) {
 try {
   let result= await auth.createUserWithEmailAndPassword(auth.getAuth(this.app),email,password);
-    this.user=result.user;
 } catch (error:any) {
     alert(JSON.stringify(error.message))
 }
+}
+getUserLoggedIn(){
+  return new Promise<boolean>((resolve,reject)=>{
+   const unsubscribe= auth.onAuthStateChanged(auth.getAuth(this.app),(user=>{
+    localStorage.setItem("user",JSON.stringify(user));
+    if(user)
+    resolve(true);
+    else{
+      localStorage.removeItem("user")
+    }
+    }));
+  })
+}
+getUser(){
+  let user=localStorage.getItem("user");
+  if(user && user!='null')
+  return JSON.parse(user);
+}
+logOut(){
+  auth.signOut(auth.getAuth(this.app)).then(x=>{
+    localStorage.removeItem("user")
+    this._route.navigate(["login"]);
+  })
 }
 
 

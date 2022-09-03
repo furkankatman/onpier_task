@@ -21,7 +21,6 @@ export class AppAddCarsComponent implements OnInit {
 
   AddCar(car:Car){
     if(car){
-      console.log(car);
       this._carService.addNewCar(car);
       this.carToAdd={} as Car;
     }
